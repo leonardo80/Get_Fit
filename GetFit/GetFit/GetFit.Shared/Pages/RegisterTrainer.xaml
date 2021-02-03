@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="GetFit.Shared.Pages.RegisterTrainer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GetFit.Shared.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    RequestedTheme="Light"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Padding="20">
+        <Grid.Background>
+            <ImageBrush Opacity="0.7" ImageSource="/Assets/main_background.jpg" Stretch="UniformToFill"></ImageBrush>
+        </Grid.Background>
+        <StackPanel>
+            <TextBlock Margin="10" FontSize="24" HorizontalAlignment="Center">Trainer Registration</TextBlock>
+            <TextBox PlaceholderText="Email" x:Name="tbEmail" Padding="5" FontSize="18" Margin="10"></TextBox>
+            <PasswordBox PlaceholderText="Password" x:Name="tbPassword" Padding="5" FontSize="18" Margin="10"></PasswordBox>
+            <TextBox PlaceholderText="Nama" x:Name="tbNama" Padding="5" FontSize="18" Margin="10"></TextBox>
+            <DatePicker FontSize="18" x:Name="dpTglLahir" Margin="10" HorizontalAlignment="Stretch"></DatePicker>
+            <TextBox x:Name="tbTinggi" Padding="5" PlaceholderText="Tinggi ( cm )" Margin="10" FontSize="18"></TextBox>
+            <TextBox FontSize="18" PlaceholderText="Berat ( kg )" Margin="10" Padding="5" x:Name="tbBerat"></TextBox>
+            <ComboBox PlaceholderText="Gender" FontSize="18" HorizontalAlignment="Stretch" x:Name="cbGender" Margin="10" Padding="5">
+                <ComboBoxItem>Male</ComboBoxItem>
+                <ComboBoxItem>Female</ComboBoxItem>
+            </ComboBox>
+            <Button x:Name="btnConfirm" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Padding="10" FontSize="18" Click="btnConfirm_Click">Register</Button>
+            <TextBlock FontSize="18" Margin="10">Already Have An Account? Login
+            <Hyperlink Click="hyperLogin_Click">Here!</Hyperlink></TextBlock>
+        </StackPanel>
+    </Grid>
+</Page>

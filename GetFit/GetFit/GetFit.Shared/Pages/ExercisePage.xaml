@@ -1,0 +1,42 @@
+﻿<Page
+    x:Class="GetFit.Shared.Pages.ExercisePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GetFit.Shared.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Loaded="page_load"
+    RequestedTheme="Light"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0" x:Name="tbSearch" TextChanged="tbSearch_Changed" Margin="10" PlaceholderText="Search name or categories"></TextBox>
+        <ListView Margin="0 50 0 0" IsItemClickEnabled="True" ItemClick="lvItemClicked" x:Name="lvSuggestion">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock FontSize="18" Text="{Binding nama}"></TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView Margin="10" Grid.Row="1" x:Name="lvExercise" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1" Margin="0 4 0 4 " BorderBrush="Gray" CornerRadius="10">
+                        <Grid Height="300">
+                            <Image Stretch="UniformToFill" HorizontalAlignment="Center" x:Name="imageExercise" Source="/Assets/main_background.jpg"></Image>
+                            <StackPanel VerticalAlignment="Bottom">
+                                <TextBlock Foreground="White" Text="{Binding nama}"></TextBlock>
+                                <TextBlock Foreground="White" Text="Kategori"></TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
