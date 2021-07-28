@@ -25,10 +25,9 @@ namespace GetFit.Shared.Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    /// 
-    public sealed partial class WorkoutsPage : Page
+    public sealed partial class ChooseExercise : Page
     {
-        ObservableCollection<Workouts> ocWorkouts = new ObservableCollection<Workouts>();
+        ObservableCollection<Exercises> ocExercise= new ObservableCollection<Exercises>();
 
         List<String> listSuggestion = new List<string>();
         DispatcherTimer timer;
@@ -37,9 +36,9 @@ namespace GetFit.Shared.Pages
         int tick;
         bool isChosen;
 
-        public WorkoutsPage()
+        public ChooseExercise()
         {
-            this.InitializeComponent();
+            this.InitializeComponent(); 
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 200);
             timer.Tick += Timer_Tick;
@@ -57,7 +56,7 @@ namespace GetFit.Shared.Pages
         }
         private void fillSuggestion()
         {
-            lvSuggestion.ItemsSource = ocWorkouts;
+            lvSuggestion.ItemsSource = ocExercise;
         }
         private async void tbSearch_Changed(object sender, RoutedEventArgs e)
         {
@@ -73,16 +72,15 @@ namespace GetFit.Shared.Pages
         }
         private void lvExerciseClicked(object sender, ItemClickEventArgs e)
         {
-            //Workouts selected = (Workouts)e.ClickedItem;
-            //session.setExercise(selected);
-            //this.Frame.Navigate(typeof(ExercisePageDetail));
+            Exercises selected = (Exercises)e.ClickedItem;
+            session.setExercise(selected);
+            this.Frame.Navigate(typeof(ChooseExerciseDetail));
         }
-
         private async void page_load(object sender, RoutedEventArgs e)
         {
-            string responseData = await httpObject.GetRequest("member/getAllWorkouts");
-            ocWorkouts = JsonConvert.DeserializeObject<ObservableCollection<Workouts>>(responseData);
-            lvExercise.ItemsSource = ocWorkouts;
+            string responseData = await httpObject.GetRequest("admin/getAllExercise");
+            ocExercise = JsonConvert.DeserializeObject<ObservableCollection<Exercises>>(responseData);
+            lvExercise.ItemsSource = ocExercise;
         }
     }
 }

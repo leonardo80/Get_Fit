@@ -1,0 +1,65 @@
+﻿<Page
+    x:Class="GetFit.Shared.Pages.AddWorkoutsTrainer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GetFit.Shared.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    RequestedTheme="Light"
+    Loaded="page_load"
+    xmlns:local1="using:GetFit.Shared.Helper"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <Page.Resources>
+        <local1:ImageExerciseConverter x:Key="imageConverter"></local1:ImageExerciseConverter>
+    </Page.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Padding="5">
+            <TextBlock HorizontalAlignment="Center" FontSize="20" Text="Add Workouts"></TextBlock>
+            <TextBox x:Name="tbNameOfWorkouts" PlaceholderText="Name" FontSize="18" Margin="10"></TextBox>
+            <TextBox x:Name="tbDescOfWorkouts" PlaceholderText="Description" FontSize="18" Margin="10"></TextBox>
+            <ComboBox PlaceholderText="Category" Margin="10" FontSize="18" HorizontalAlignment="Stretch" x:Name="cbCategory">
+                <ComboBoxItem>Full Body</ComboBoxItem>
+                <ComboBoxItem>Upper Body</ComboBoxItem>
+                <ComboBoxItem>Lower Body</ComboBoxItem>
+                <ComboBoxItem>Abs</ComboBoxItem>
+                <ComboBoxItem>Shoulders</ComboBoxItem>
+                <ComboBoxItem>Chest</ComboBoxItem>
+                <ComboBoxItem>Biceps</ComboBoxItem>
+                <ComboBoxItem>Triceps</ComboBoxItem>
+                <ComboBoxItem>Back</ComboBoxItem>
+            </ComboBox>
+            <ComboBox PlaceholderText="Difficulty" Margin="10" FontSize="18" HorizontalAlignment="Stretch" x:Name="cbLevel">
+                <ComboBoxItem>Easy</ComboBoxItem>
+                <ComboBoxItem>Normal</ComboBoxItem>
+                <ComboBoxItem>Hard</ComboBoxItem>
+                <ComboBoxItem>Very Hard</ComboBoxItem>
+            </ComboBox>
+            <TextBlock FontSize="18" Margin="10" x:Name="tbMinutes" HorizontalAlignment="Stretch"></TextBlock>
+            <Button x:Name="btnChoose" Click="btnChoose_Click" Margin="10" Content="Choose Exercise" HorizontalAlignment="Stretch" FontSize="18"></Button>
+        </StackPanel>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel>
+                <TextBlock x:Name="tbValue" Text="Your Exercise" Margin="10" FontSize="18"></TextBlock>
+                <ListView Margin="10" SelectionMode="Single" x:Name="lvExercises" ItemClick="lvExerciseClicked" IsItemClickEnabled="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel BorderBrush="Black" Margin="5">
+                                <Image Source="{Binding picture,Converter={StaticResource imageConverter}}" Stretch="UniformToFill" HorizontalAlignment="Center"></Image>
+                                <TextBlock FontSize="18" Text="{Binding name}"></TextBlock>
+                                <TextBlock FontSize="18" Text="{Binding category2}"></TextBlock>
+                                <TextBlock FontSize="18" Text="{Binding durasi}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Content="Save" Click="btnSave_Click" HorizontalAlignment="Stretch" Margin="10"></Button>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

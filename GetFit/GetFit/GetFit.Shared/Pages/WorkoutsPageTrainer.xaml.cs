@@ -25,8 +25,7 @@ namespace GetFit.Shared.Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    /// 
-    public sealed partial class WorkoutsPage : Page
+    public sealed partial class WorkoutsPageTrainer : Page
     {
         ObservableCollection<Workouts> ocWorkouts = new ObservableCollection<Workouts>();
 
@@ -37,7 +36,7 @@ namespace GetFit.Shared.Pages
         int tick;
         bool isChosen;
 
-        public WorkoutsPage()
+        public WorkoutsPageTrainer()
         {
             this.InitializeComponent();
             timer = new DispatcherTimer();
@@ -73,9 +72,9 @@ namespace GetFit.Shared.Pages
         }
         private void lvExerciseClicked(object sender, ItemClickEventArgs e)
         {
-            //Workouts selected = (Workouts)e.ClickedItem;
-            //session.setExercise(selected);
-            //this.Frame.Navigate(typeof(ExercisePageDetail));
+            Workouts selected = (Workouts)e.ClickedItem;
+            session.setWorkouts(selected);
+            this.Frame.Navigate(typeof(WorkoutsPageDetail));
         }
 
         private async void page_load(object sender, RoutedEventArgs e)
@@ -84,5 +83,11 @@ namespace GetFit.Shared.Pages
             ocWorkouts = JsonConvert.DeserializeObject<ObservableCollection<Workouts>>(responseData);
             lvExercise.ItemsSource = ocWorkouts;
         }
+        private async void btnAddExercise_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(AddWorkoutsTrainer));
+        }
+
+
     }
 }

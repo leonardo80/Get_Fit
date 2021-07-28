@@ -59,6 +59,7 @@ namespace GetFit.Shared.Pages
                 formContent.Add("tinggi", tbTinggi.Text);
                 formContent.Add("berat", tbBerat.Text);
                 formContent.Add("type", "trainer");
+                formContent.Add("tanggal_berat", DateTime.Now.ToString("dd-MM-yyyy"));
 
                 var responseData = await httpObject.PostRequestWithoutImage("member/register", new FormUrlEncodedContent(formContent));
                 json = JObject.Parse(responseData);

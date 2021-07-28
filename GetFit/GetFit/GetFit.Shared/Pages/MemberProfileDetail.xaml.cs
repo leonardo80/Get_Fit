@@ -66,24 +66,21 @@ namespace GetFit.Shared.Pages
         {
             var formContent = new Dictionary<string, string>();
             formContent.Add("uid", member.uid);
-            formContent.Add("nama", member.nama);
-            formContent.Add("tinggi", member.tinggi.ToString());
-            formContent.Add("berat", member.berat.ToString());
-
-            //await new MessageDialog(member.uid).ShowAsync();
+            formContent.Add("nama", tbNama.Text);
+            formContent.Add("tinggi", tbTinggi.Text);
+            formContent.Add("berat", tbBerat.Text);
 
             string tempNama, tempTinggi, tempBerat;
             tempNama = member.nama;
             tempTinggi = member.tinggi.ToString();
             tempBerat = member.berat.ToString();
 
-            var responseData = await httpObject.PostRequestWithoutImage("member/updateProfile", new FormUrlEncodedContent(formContent));
+            var responseData = await httpObject.PutRequest("member/updateProfile", new FormUrlEncodedContent(formContent));
             json = JObject.Parse(responseData);
-            await new MessageDialog(json["message"].ToString()).ShowAsync();
 
             if (json["status"].ToString() == "true")
             {
-                member.nama = tempNama; member.tinggi = Convert.ToInt32(tempTinggi); member.berat = Convert.ToInt32(tempBerat);
+                member.nama = tbNama.Text; member.tinggi = Convert.ToInt32(tbTinggi.Text); member.berat = Convert.ToInt32(tbBerat.Text);
                 session.setMemberLogin(member);
 
                 await new MessageDialog(json["message"].ToString()).ShowAsync();

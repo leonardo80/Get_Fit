@@ -46,13 +46,16 @@ namespace GetFit.Shared.Pages
             //{
                 var formContent = new Dictionary<string, string>();
 
-                formContent.Add("email", "ldp.edo98@gmail.com");
-                formContent.Add("password", "leonardo80");
+            formContent.Add("email", "silvie97@gmail.com");
+            formContent.Add("password", "leonardo80");
 
-                //formContent.Add("email", tbUsername.Text);
-                //formContent.Add("password", tbPassword.Password);
+            //formContent.Add("email", "ldp.leo98@gmail.com");
+            //formContent.Add("password", "leonardo80");
 
-                var responseData = await httpObject.PostRequestWithoutImage("login", new FormUrlEncodedContent(formContent));
+            //formContent.Add("email", tbUsername.Text);
+            //formContent.Add("password", tbPassword.Password);
+
+            var responseData = await httpObject.PostRequestWithoutImage("login", new FormUrlEncodedContent(formContent));
                 json = JObject.Parse(responseData);
 
                 string userData = json["data"].ToString();
@@ -66,6 +69,7 @@ namespace GetFit.Shared.Pages
 
                 if (json["type"].ToString() == "member" || json["type"].ToString() == "trainer")
                 {
+                    
                     this.Frame.Navigate(typeof(GetFit.Shared.Pages.HomeNavigationView));
                 }
             //}

@@ -13,6 +13,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using GetFit.Shared.Class;
+
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace GetFit.Shared.Pages
@@ -22,13 +24,19 @@ namespace GetFit.Shared.Pages
     /// </summary>
     public sealed partial class HomeNavigationView : Page
     {
+        Session session;
+        Member member;
+
         public HomeNavigationView()
         {
             this.InitializeComponent();
+            session = new Session();
+            member = session.getMemberLogin();
         }
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
+            
             foreach (NavigationViewItemBase item in NavView.MenuItems)
             {
                 if (item is NavigationViewItem && item.Tag.ToString() == "home")
@@ -42,21 +50,51 @@ namespace GetFit.Shared.Pages
 
         private void NavView_Navigate(NavigationViewItem item)
         {
-            switch (item.Tag)
+            if (member.type == "trainer")
             {
-                case "Profile":
-                    ContentFrame.Navigate(typeof(HomeMember)); 
-                    break;
-                case "Exercises":
-                    ContentFrame.Navigate(typeof(ExercisePage));
-                    break;
-                case "Workouts":
-                    ContentFrame.Navigate(typeof(WorkoutsPage));
-                    break;
-                case "Settings":
-                    ContentFrame.Navigate(typeof(Settings));
-                    break;
+                switch (item.Tag)
+                {
+                    //case "Profile":
+                    //    ContentFrame.Navigate(typeof(HomeMember));
+                    //    break;
+                    case "Exercises":
+                        ContentFrame.Navigate(typeof(ExercisePage));
+                        break;
+                    case "Workouts":
+                        ContentFrame.Navigate(typeof(WorkoutsPageTrainer));
+                        break;
+                    case "Settings":
+                        ContentFrame.Navigate(typeof(Settings));
+                        break;
+                }
             }
+            else if (member.type == "member")
+            {
+                if (member.premium == "no")
+                {
+                    switch (item.Tag)
+                    {
+                        case "Profile":
+                            ContentFrame.Navigate(typeof(HomeMember));
+                            break;
+                        case "Exercises":
+                            ContentFrame.Navigate(typeof(ExercisePage));
+                            break;
+                        case "Workouts":
+                            ContentFrame.Navigate(typeof(WorkoutsPage));
+                            break;
+                        case "Settings":
+                            ContentFrame.Navigate(typeof(Settings));
+                            break;
+                    }
+                }
+                if (member.premium == "yes")
+                {
+
+                }
+            }
+
+            
         }
 
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)

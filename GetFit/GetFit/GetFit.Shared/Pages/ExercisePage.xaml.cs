@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Navigation;
 using GetFit.Shared.Class;
 using System.Collections.ObjectModel;
 using Windows.UI.Popups;
+using Newtonsoft.Json;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -30,6 +31,8 @@ namespace GetFit.Shared.Pages
 
         List<String> listSuggestion = new List<string>();
         DispatcherTimer timer;
+        HttpObject httpObject;
+        Session session;
         int tick;
         bool isChosen;
 
@@ -37,14 +40,16 @@ namespace GetFit.Shared.Pages
         {
             this.InitializeComponent();
             timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 200);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 200);
             timer.Tick += Timer_Tick;
+            httpObject = new HttpObject();
+            session = new Session();
         }
 
-        private void Timer_Tick(object sender, object e)
+        private async void Timer_Tick(object sender, object e)
         {
             tick++;
-            if (tick == 2 && tbSearch.Text.Length != 0 && isChosen)
+            if (tick == 2)
             {
                 fillSuggestion();
             }
@@ -61,20 +66,21 @@ namespace GetFit.Shared.Pages
             lvSuggestion.ItemsSource = listSuggestion;
         }
 
-        private void page_load(object sender, RoutedEventArgs e)
+        private void lvExerciseClicked(object sender, ItemClickEventArgs e)
         {
-            ocExercise.Add(new Exercises("nama1", "deskripsi 1", "kategori 1"));
-            ocExercise.Add(new Exercises("nama2", "deskripsi 2", "kategori 2"));
-            ocExercise.Add(new Exercises("nama3", "deskripsi 3", "kategori 3"));
-            ocExercise.Add(new Exercises("nama4", "deskripsi 4", "kategori 4"));
-            ocExercise.Add(new Exercises("nama5", "deskripsi 5", "kategori 5"));
-
-            
-            lvExercise.ItemsSource = ocExercise;
-            //lvExercise.ItemsSource = ocBaru;
+            Exercises selected = (Exercises)e.ClickedItem;
+            session.setExercise(selected);
+            this.Frame.Navigate(typeof(ExercisePageDetail));
         }
 
-        private void tbSearch_Changed(object sender, RoutedEventArgs e)
+        private async void page_load(object sender, RoutedEventArgs e)
+        {
+            string responseData = await httpObject.GetRequest("admin/getAllExercise");
+            ocExercise = JsonConvert.DeserializeObject<ObservableCollection<Exercises>>(responseData);
+            lvExercise.ItemsSource = ocExercise;
+        }
+
+        private async void tbSearch_Changed(object sender, RoutedEventArgs e)
         {
             if (!timer.IsEnabled)
             {
@@ -83,10 +89,5 @@ namespace GetFit.Shared.Pages
             tick = 0;
         }
 
-        private async void imageClick(object sender, RoutedEventArgs e)
-        {
-            string button = (sender as Button).Content.ToString();
-            await new MessageDialog(button).ShowAsync();
-        }
     }
 }

@@ -18,18 +18,40 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Class\ExerciseForWorkouts.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Class\Exercises.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Class\HttpObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Class\Member.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Class\RootObjectWorkouts.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Class\Session.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Class\Workouts.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\ImageExerciseConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\AddWeight.xaml.cs">
       <DependentUpon>AddWeight.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\AddWorkoutsTrainer.xaml.cs">
+      <DependentUpon>AddWorkoutsTrainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\ChooseExercise.xaml.cs">
+      <DependentUpon>ChooseExercise.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\ChooseExerciseDetail.xaml.cs">
+      <DependentUpon>ChooseExerciseDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\CobaGambar.xaml.cs">
+      <DependentUpon>CobaGambar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\EditExerciseWorkouts.xaml.cs">
+      <DependentUpon>EditExerciseWorkouts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\ExercisePage.xaml.cs">
       <DependentUpon>ExercisePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\ExercisePageDetail.xaml.cs">
+      <DependentUpon>ExercisePageDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\HomeMember.xaml.cs">
       <DependentUpon>HomeMember.xaml</DependentUpon>
@@ -55,6 +77,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\WorkoutsPage.xaml.cs">
       <DependentUpon>WorkoutsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\WorkoutsPageDetail.xaml.cs">
+      <DependentUpon>WorkoutsPageDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\WorkoutsPageTrainer.xaml.cs">
+      <DependentUpon>WorkoutsPageTrainer.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
@@ -65,7 +93,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\AddWorkoutsTrainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\ChooseExercise.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\ChooseExerciseDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\CobaGambar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\EditExerciseWorkouts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\ExercisePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\ExercisePageDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,6 +150,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\WorkoutsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\WorkoutsPageDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\WorkoutsPageTrainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
