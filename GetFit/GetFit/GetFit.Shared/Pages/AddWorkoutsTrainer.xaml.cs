@@ -51,6 +51,8 @@ namespace GetFit.Shared.Pages
             lvExercises.ItemsSource = list;
             countMinute();
             tbMinutes.Text = "Total Minutes : " + totalminute + " Min " + totalsecond + " Sec";
+
+            //coba git
         }
         private void lvExerciseClicked(object sender, ItemClickEventArgs e)
         {
